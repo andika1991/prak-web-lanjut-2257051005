@@ -13,7 +13,7 @@ class ProfileController extends Controller
             'kelas' => $kelas ,
             'npm' => $npm  
         ];
-        
+      
         return view('profile', $data);
     }
 }

@@ -21,6 +21,7 @@
             <td>NPM</td>
             <td>:</td>
             <td>{{ $npm }}</td>
+            
         </tr>
     </table>
 </body>
