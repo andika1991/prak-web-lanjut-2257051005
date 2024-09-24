@@ -122,7 +122,7 @@
         
         <div class="info">
             <strong>Kelas</strong>
-            <span class="detail">{{ $kelas }}</span>
+            <span class="detail">{{ $kelas ?? 'kelas tidak ditemukan' }}</span>
         </div>
 
         <div class="info">
@@ -130,7 +130,7 @@
             <span class="detail">{{ $npm }}</span>
         </div>
         
-        <a href="/" class="btn btn-custom mt-3">Hubungi Saya</a>
+        <a href="/user/create" class="btn btn-custom mt-3">Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
