@@ -8,17 +8,6 @@ use App\Models\UserModel;
 
 class UserController extends Controller
 {
-    public function profile($nama = "", $kelas = "", $npm = "")
-    {
-        $data = [
-            'nama' => $nama ,
-            'kelas' => $kelas ,
-            'npm' => $npm  
-        ];
-      
-        return view('profile', $data);
-    }
-
    
     public function create()
     {
