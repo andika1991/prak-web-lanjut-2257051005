@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kelas;
+use App\Models\Kelas; // Bagian ini diambil dari branch database-model
 use App\Models\UserModel;
-
 
 class UserController extends Controller
 {
-
     public function profile($nama = "", $kelas = "", $npm = "")
     {
         $data = [
@@ -21,14 +19,16 @@ class UserController extends Controller
         return view('profile', $data);
     }
 
+   
     public function create()
     {
-        return view('create_user',['kelas'=>Kelas::all(),]);
+        return view('create_user', ['kelas' => Kelas::all()]);
     }
     
+   
     public function store(Request $request)
     {
-        // Validasi input
+      
         $validatedData = $request->validate([
             'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:255',
             'npm' => 'required|digits:10',
@@ -39,20 +39,16 @@ class UserController extends Controller
             'kelas_id.required' => 'Kelas harus dipilih.',
         ]);
     
-        // Simpan user baru ke database
+    
         $user = UserModel::create($validatedData);
     
-        // Muat relasi kelas
+   
         $user->load('kelas');
     
-        // Redirect ke halaman profil dengan data yang baru diinputkan
         return redirect()->route('user.profile', [
             'nama' => $user->nama,
             'npm' => $user->npm,
-            'kelas' => $user->kelas->nama_kelas ?? 'kelas tidak ditemukan', // Pastikan kelas ada
+            'kelas' => $user->kelas->nama_kelas ?? 'kelas tidak ditemukan',
         ]);
     }
-    
-    
-    
 }
