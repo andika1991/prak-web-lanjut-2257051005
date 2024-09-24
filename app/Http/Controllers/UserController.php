@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kelas; // Bagian ini diambil dari branch database-model
+use App\Models\Kelas; 
 use App\Models\UserModel;
 
 class UserController extends Controller
