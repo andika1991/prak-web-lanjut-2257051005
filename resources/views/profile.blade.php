@@ -130,7 +130,7 @@
             <span class="detail">{{ $npm }}</span>
         </div>
         
-        <a href="/user/create" class="btn btn-custom mt-3">Kembali</a>
+        <a href="{{ route('user.index') }}" class="btn btn-custom mt-3">Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

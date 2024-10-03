@@ -9,7 +9,7 @@ class Kelas extends Model
 {
     use HasFactory;
 
-   
+  
     protected $table = 'kelas';
 
     protected $guarded = ['id'];
@@ -17,4 +17,8 @@ class Kelas extends Model
     public function users() {
         return $this->hasMany(User::class, 'kelas_id');
     }
+    public function getKelas(){
+        return $this->all();
+       }
+       
 }
