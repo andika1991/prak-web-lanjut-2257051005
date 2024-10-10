@@ -39,4 +39,6 @@ Route::post('/user/store',
  Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
  Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 
+ Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
+
 

@@ -3,7 +3,7 @@
 @section('title', 'Create User')
 @section('content')
     <div class="animated-bg min-h-screen flex justify-center items-center">
-        <form action="{{ route('user.store') }}" method="POST" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
             @csrf
 
             <div class="absolute top-[-50px] left-[50%] transform -translate-x-[50%] bg-white rounded-full p-3 shadow-md">
@@ -60,6 +60,9 @@
                     <p class="text-red-500 text-sm mt-1">{{ $errors->first('kelas_id') }}</p>
                 @endif
             </div>
+            <label for="foto">Foto</label><br>
+            <input type="file" id="foto" name="foto">
+
 
             <!-- Submit Button -->
             <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition ease-in-out duration-300">

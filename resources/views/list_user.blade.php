@@ -43,6 +43,7 @@
                         <td>{{ $user->nama_kelas }}</td>
                         <td>
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-warning">detail</a>
                             <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')

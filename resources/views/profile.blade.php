@@ -113,21 +113,23 @@
 
     <!-- Profile container -->
     <div class="profile-container">
-        <img src="{{ asset('img/PHOTO.JPG') }}" alt="Profile Image">
+    <img src="{{ asset('storage/' . $user->foto) }}" alt="Profile Image">
+
+
         <p style="font-weight:bold;">Mahasiswa Ilmu Komputer 2022</p>
         <div class="info">
             <strong>Nama</strong>
-            <span class="detail">{{ $nama }}</span>
+            <span class="detail">{{ $user->nama }}</span>
         </div>
         
         <div class="info">
             <strong>Kelas</strong>
-            <span class="detail">{{ $kelas ?? 'kelas tidak ditemukan' }}</span>
+            <span class="detail">{{ $kelas ? $kelas : 'kelas tidak ditemukan' }}</span> 
         </div>
 
         <div class="info">
             <strong>NPM</strong>
-            <span class="detail">{{ $npm }}</span>
+            <span class="detail">{{ $user->npm }}</span>
         </div>
         
         <a href="{{ route('user.index') }}" class="btn btn-custom mt-3">Kembali</a>
