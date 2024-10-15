@@ -41,39 +41,42 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = UserModel::findOrFail($id);
+        
+        // Validasi inputan
         $validatedData = $request->validate([
-            'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:255',
+            'nama' => 'required|string|max:255',
             'npm' => 'required|digits:10',
             'kelas_id' => 'required|exists:kelas,id',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
-        ], [
-            'nama.regex' => 'Nama hanya boleh mengandung huruf.',
-            'npm.digits' => 'NPM harus 10 digit angka.',
-            'kelas_id.required' => 'Kelas harus dipilih.',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file foto
         ]);
-
-        $user = UserModel::findOrFail($id);
-
-
+    
+     
+        $user->nama = $request->nama;
+        $user->npm = $request->npm;
+        $user->kelas_id = $request->kelas_id;
+    
+        
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-         
-            $fotoPath = $foto->store('img', 'public');
-        } else {
-
-            $fotoPath = $user->foto;
+          
+            if ($user->foto && Storage::disk('public')->exists($user->foto)) {
+                Storage::disk('public')->delete($user->foto);
+            }
+    
+           
+            $file = $request->file('foto');
+            $fileName = time() . '.' . $file->getClientOriginalExtension(); 
+            $filePath = $file->storeAs('uploads', $fileName, 'public'); 
+            $user->foto = $filePath;
         }
-
-      
-        $user->update([
-            'nama' => $request->input('nama'),
-            'npm' => $request->input('npm'),
-            'kelas_id' => $request->input('kelas_id'),
-            'foto' => $fotoPath,
-        ]);
-
-        return redirect()->route('user.index')->with('success', 'Data user berhasil diperbarui.');
+    
+        
+        $user->save();
+    
+        return redirect()->route('user.index')->with('success', 'User berhasil diupdate.');
     }
+    
+    
 
     public function store(Request $request)
     {

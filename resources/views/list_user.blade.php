@@ -25,6 +25,7 @@
                 <th>ID</th>
                 <th>Nama</th>
                 <th>NPM</th>
+                <th>Foto</th>
                 <th>Kelas</th>
                 <th>Aksi</th>
             </tr>
@@ -40,6 +41,9 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->npm }}</td>
+                        <td>
+                        <img src="{{ Storage::url($user->foto) }}" alt="User Photo" width="100" class="mt-2">
+                        </td>
                         <td>{{ $user->nama_kelas }}</td>
                         <td>
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>

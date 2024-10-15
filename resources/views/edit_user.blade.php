@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="animated-bg min-h-screen flex justify-center items-center">
-    <form action="{{ route('user.update', $user->id) }}" method="POST" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
+<form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
         @csrf
         @method('PUT')
 
@@ -14,7 +14,7 @@
 
         <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Edit User</h2>
 
-        <!-- Nama Field -->
+ 
         <div class="mb-6">
             <label for="nama" class="block text-gray-700 mb-2 font-medium">Nama:</label>
             <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-purple-500">
@@ -62,6 +62,16 @@
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="foto">Foto</label>
+            <input type="file" name="foto" class="form-control">
+            @if($user->foto)
+            <img src="{{ Storage::url($user->foto) }}" alt="User Photo" width="100" class="mt-2">
+            @endif
+
+        </div>
+ 
+
 
         <!-- Submit Button -->
         <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition ease-in-out duration-300">
