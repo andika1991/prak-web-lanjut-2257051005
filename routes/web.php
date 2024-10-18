@@ -15,9 +15,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [UserController::class, 'index'])->name('user.index');
 
 Route::get('/user/profile',
 [UserController::class, 'profile']);
