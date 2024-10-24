@@ -97,7 +97,7 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             
-            $fotoPath = $foto->store('uploads/img', 'public');
+            $fotoPath = $foto->store('uploads', 'public');
         } else {
             $fotoPath = null; 
         }

@@ -42,7 +42,7 @@
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->npm }}</td>
                         <td>
-                        <img src="{{ Storage::url($user->foto) }}" alt="User Photo" width="100" class="mt-2">
+                        <img src="{{ asset('storage/' . $user->foto) }}" alt="User Photo" width="100" class="mt-2">
                         </td>
                         <td>{{ $user->nama_kelas }}</td>
                         <td>
