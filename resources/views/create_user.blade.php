@@ -12,7 +12,7 @@
 
             <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Create User</h2>
 
-            <!-- Nama Field -->
+          
             <div class="mb-6">
                 <label for="nama" class="block text-gray-700 mb-2 font-medium">Nama:</label>
                 <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-purple-500">
@@ -21,9 +21,9 @@
                     </span>
                     <input type="text" id="nama" name="nama" class="w-full px-3 py-2 focus:outline-none rounded-r-lg" placeholder="Masukkan nama" value="{{ old('nama') }}">
                 </div>
-                @if ($errors->has('nama'))
-                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('nama') }}</p>
-                @endif
+                @error('nama')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- NPM Field -->
@@ -35,12 +35,12 @@
                     </span>
                     <input type="text" id="npm" name="npm" class="w-full px-3 py-2 focus:outline-none rounded-r-lg" placeholder="Masukkan NPM" value="{{ old('npm') }}">
                 </div>
-                @if ($errors->has('npm'))
-                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('npm') }}</p>
-                @endif
+                @error('npm')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <!-- Kelas Field -->
+        
             <div class="mb-6">
                 <label for="kelas_id" class="block text-gray-700 mb-2 font-medium">Kelas:</label>
                 <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-purple-500">
@@ -56,15 +56,47 @@
                         @endforeach
                     </select>
                 </div>
-                @if ($errors->has('kelas_id'))
-                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('kelas_id') }}</p>
-                @endif
+                @error('kelas_id')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
-            <label for="foto">Foto</label><br>
-            <input type="file" id="foto" name="foto">
 
+            <!-- Jurusan Field -->
+            <div class="mb-6">
+                <label for="jurusan_id" class="block text-gray-700 mb-2 font-medium">Jurusan:</label>
+                <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-purple-500">
+                    <span class="px-3 text-gray-500">
+                        <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <select id="jurusan_id" name="jurusan_id" class="w-full px-3 py-2 focus:outline-none rounded-r-lg" required>
+                        <option value="">Pilih Jurusan</option>
+                        @foreach($jurusan as $jur)
+                            <option value="{{ $jur->id }}" {{ old('jurusan_id') == $jur->id ? 'selected' : '' }}>
+                                {{ $jur->nama_jurusan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('jurusan_id')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-            <!-- Submit Button -->
+           
+            <div class="mb-6">
+                <label for="foto" class="block text-gray-700 mb-2 font-medium">Foto:</label>
+                <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-purple-500">
+                    <span class="px-3 text-gray-500">
+                        <i class="fas fa-camera"></i>
+                    </span>
+                    <input type="file" id="foto" name="foto" class="w-full px-3 py-2 focus:outline-none rounded-r-lg" accept="image/*">
+                </div>
+                @error('foto')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+         
             <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition ease-in-out duration-300">
                 <i class="fas fa-paper-plane"></i> Simpan
             </button>

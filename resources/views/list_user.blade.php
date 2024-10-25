@@ -27,6 +27,7 @@
                 <th>NPM</th>
                 <th>Foto</th>
                 <th>Kelas</th>
+                <th>Fakultas</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -44,7 +45,8 @@
                         <td>
                         <img src="{{ asset('storage/' . $user->foto) }}" alt="User Photo" width="100" class="mt-2">
                         </td>
-                        <td>{{ $user->nama_kelas }}</td>
+                        <td>{{ $user->kelas->nama_kelas ?? '-' }}</td> 
+                       <td>{{ $user->jurusan->fakultas->nama_fakultas ?? '-' }}</td>
                         <td>
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-warning">detail</a>
